@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sorting Algorithms/Sorting Algorithms.iml" filepath="$PROJECT_DIR$/Sorting Algorithms/Sorting Algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/Week 1.iml" filepath="$PROJECT_DIR$/Week 1.iml" />
     </modules>
   </component>
