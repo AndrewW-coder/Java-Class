@@ -2,83 +2,68 @@ import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args) {
-        int[] array = {5, 3, 1};
-        int[] array2 = {1, 7, 8, 3, 8};
-        int[] output = merge(array, array2);
+        int[] array = {4, 2, 5, 6, 7, 9, 3, 2};
 
-        System.out.println(Arrays.toString(output));
-
+        mergeSort(array, 0, 7);
+        System.out.println(Arrays.toString(array));
 
     }
 
     public static void mergeSort(int[] arr, int lb, int ub) {
-        if(ub > lb) {
-            int mid = (lb + ub - 1) / 2;
+        if(lb < ub) {
+            int mid = (lb + ub - 1)/2; //midpoint of array
 
-            int size1 = mid - lb + 1;
-            int size2 = ub - mid;
+            mergeSort(arr, lb, mid); //makes sure everything left is length 1
+            mergeSort(arr, mid + 1, ub); //makes sure everything right is length 1
 
-            int[] firstHalf = new int[size1];
-            int[] secondHalf = new int[size2];
-
-            for(int i = 0; i < size1; i++) {
-                firstHalf[i] = arr[lb + i];
-            }
-
-            System.out.println(Arrays.toString(firstHalf));
-
-            for(int j = 0; j < size2; j++) {
-                secondHalf[j] = arr[j + mid + 1];
-            }
-
-
-            System.out.println(Arrays.toString(secondHalf));
-
-            merge(firstHalf, secondHalf);
-
-            mergeSort(firstHalf, lb, mid);
-            mergeSort(secondHalf, mid, ub);
-
-
+            merge(arr, lb, ub, mid); //merges all the arrays together
         }
     }
 
-    public static int[] merge(int[] arr1, int[] arr2) {
-        int oneLength = arr1.length;
-        int twoLength = arr2.length;
+    public static void merge(int[] arr, int lb, int ub, int m) {
 
-        int oneCount = 0;
-        int twoCount = 0;
-        int totalCount = 0;
+        int len1 = m - lb + 1; //length of first list
+        int len2 = ub - m; //length of second list
 
-        int totalLength = oneLength + twoLength;
+        int[] L = new int[len1]; //establishes array with length
+        int[] R = new int[len2]; //establishes array with length
 
-        int[] finalArray = new int[totalLength];
+        for(int i = 0; i < len1; i++) { //adds all the numbers to first list
+            L[i] = arr[i + lb];
+        }
 
-        while(oneCount < oneLength && twoCount < twoLength) {
-            if(arr1[oneCount] < arr2[twoCount]) {
-                finalArray[totalCount] = arr1[oneCount];
-                oneCount++;
+        for(int i = 0; i < len2; i++) { //adds all the number to second list
+            R[i] = arr[i + m + 1];
+        }
+
+//         System.out.println(Arrays.toString(L));
+//         System.out.println(Arrays.toString(R));
+
+        int i = 0, j = 0;
+        int k = lb;
+
+        while(i < len1 && j < len2) {
+            if(L[i] < R[j]) {
+                arr[k] = L[i];
+                i++;
             }
             else {
-                finalArray[totalCount] = arr2[twoCount];
-                twoCount++;
+                arr[k] = R[j];
+                j++;
             }
-            totalCount++;
+            k++;
         }
 
-        while(oneCount < oneLength) {
-            finalArray[totalCount] = arr1[oneCount];
-            oneCount++;
-            totalCount++;
+        while(i < len1) {
+            arr[k] = L[i];
+            i++;
+            k++;
         }
 
-        while(twoCount < twoLength) {
-            finalArray[totalCount] = arr2[twoCount];
-            twoCount++;
-            totalCount++;
+        while(j < len2) {
+            arr[k] = R[j];
+            j++;
+            k++;
         }
-
-        return finalArray;
     }
 }
