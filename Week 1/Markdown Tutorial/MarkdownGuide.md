@@ -24,7 +24,7 @@ If you don't double page break, it will be on the same line.
 `//for small amounts of code`
 
 ```java
-public class Main{
+public class PointMain{
     public static void main(String[] args) {
         System.out.println("deez nuts lol");
     }

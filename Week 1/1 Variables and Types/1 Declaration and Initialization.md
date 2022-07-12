@@ -38,7 +38,7 @@ String s = "This is a string";
 
 # Implementation
 ```java
-public class Main{
+public class PointMain{
     public static void main(String[] args) {
         int lastYear = 2021; //Declaration and Initialization
         int thisYear; //Declaration
