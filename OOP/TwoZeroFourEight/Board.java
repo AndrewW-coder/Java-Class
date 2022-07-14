@@ -19,7 +19,21 @@ public class Board {
         System.out.println("-----------------");
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                System.out.print("| " + tileBoard[i * 4 + j].getValue() + " ");
+                int numDigits = String.valueOf(tileBoard[i * 4 + j].getValue()).length();
+                StringBuilder str1 = new StringBuilder();
+                StringBuilder str2 = new StringBuilder();
+                int l = (3 - numDigits)/2;
+                int r = 3 - numDigits - l;
+
+                for(int k = 0; k < l; k++) {
+                    str1.append(" ");
+                }
+
+                for(int k = 0; k < r; k++) {
+                    str2.append(" ");
+                }
+
+                System.out.print("|" + str1 + tileBoard[i * 4 + j].getValue() + str2);
             }
             System.out.println("|");
             System.out.println("-----------------");
